@@ -64,10 +64,10 @@ func (f *Factory) sendSq() (uint8, error) {
 		return 0, errors.New(resp.String())
 	}
 
-	if strings.Contains(resp.String(), "newrand") {
+	if strings.Contains(resp.String(), "re_rand") {
 		version = 2
-		newRand, _ := strconv.Atoi(strings.ReplaceAll(resp.String(), "newrand=", ""))
-		f.key = getKeyPool(version, r, newRand)
+		re_rand, _ := strconv.Atoi(strings.ReplaceAll(resp.String(), "re_rand=", ""))
+		f.key = getKeyPool(version, r, re_rand)
 	} else if len(resp.String()) == 0 {
 		version = 1
 		f.key = getKeyPool(version, r, 0)
